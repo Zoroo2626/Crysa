@@ -18,7 +18,7 @@ AI coding agents ship code fast. They also ship insecure code fast.
 - Business logic flaws that no static analyzer understands
 
 Traditional SAST tools catch typos. Crysa catches the vulnerabilities that
-require **understanding what the code is supposed to do** — and what an
+require **understanding what the code is supposed to do** and what an
 attacker can make it do instead.
 
 ## What Crysa Does Differently
@@ -51,7 +51,7 @@ No Docker, no database, no cloud service. Works with any OpenAI-compatible API.
 ### From source
 
 ```bash
-git clone https://github.com/crysa/crysa
+git clone https://github.com/Zoroo2626/Crysa.git
 cd crysa
 pip install -e ".[dev]"
 ```
