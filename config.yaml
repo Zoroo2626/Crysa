@@ -1,0 +1,26 @@
+crysa:
+  # LLM Backend, override via .env or environment variables
+  base_url: "${CRYSA_BASE_URL}"
+  model: "${CRYSA_MODEL}"
+  api_key: "${CRYSA_API_KEY}"
+  max_tokens: 4096
+  temperature: 0.1
+
+  # Scanning
+  severity_threshold: LOW
+  confidence_threshold: MEDIUM
+  chunk_size: 8000
+  chunk_overlap: 200
+
+  # MCP Server
+  mcp_host: "127.0.0.1"
+  mcp_port: 3333
+
+  # Watcher
+  debounce_ms: 800
+  max_file_lines: 2000
+
+  # Output
+  default_format: rich
+  show_fix: true
+  show_reproduction: true

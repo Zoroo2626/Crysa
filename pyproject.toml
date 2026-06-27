@@ -1,0 +1,61 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "crysa"
+version = "0.1.0"
+description = "AI-native security reasoning engine for coding agents"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.10"
+authors = [{ name = "Crysa Contributors" }]
+keywords = ["security", "ai", "llm", "code-review", "vulnerability", "bug-bounty"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Software Development :: Quality Assurance",
+]
+
+dependencies = [
+    "typer[all]>=0.9.0",
+    "rich>=13.0.0",
+    "openai>=1.0.0",
+    "fastmcp>=0.4.0",
+    "watchdog>=3.0.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0.0",
+    "tiktoken>=0.5.0",
+    "gitpython>=3.1.0",
+]
+
+[project.scripts]
+crysa = "crysa.cli:app"
+
+[project.urls]
+Homepage = "https://github.com/crysa/crysa"
+Repository = "https://github.com/crysa/crysa"
+Issues = "https://github.com/crysa/crysa/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["crysa"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-mock>=3.12.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
