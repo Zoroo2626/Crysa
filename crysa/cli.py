@@ -365,6 +365,7 @@ def watch(
 @app.command(name="diff")
 def diff_cmd(
     staged: bool = typer.Option(False, "--staged", help="Scan git staged changes"),
+    severity: str = typer.Option("LOW", "--severity", "-s", help="Minimum severity: CRITICAL|HIGH|MEDIUM|LOW|INFO"),
     format: str = typer.Option("rich", "--format", "-f", help="Output format: rich|json|sarif"),
 ) -> None:
     """Scan a git diff for security vulnerabilities.
@@ -406,18 +407,23 @@ def diff_cmd(
             if d.diff_text.strip():
                 findings.extend(review_diff(d.diff_text, d.file_path, config=config))
 
-    from crysa.engine.findings import ScanResult
+    from crysa.engine.findings import ScanResult, Severity as Sev
 
     num_files = len(set(f.file for f in findings)) if findings else 0
     result = ScanResult(findings=findings, files_scanned=num_files)
+
+    try:
+        result = result.filter_by_severity(Sev(severity))
+    except ValueError:
+        warn(f"Invalid severity: {severity}, using LOW")
 
     if format == "json":
         output_console.print_json(result.to_json())
     elif format == "sarif":
         output_console.print_json(result.to_sarif_json())
     else:
-        _display_findings_rich(findings, show_fix=config.show_fix, show_reproduction=config.show_reproduction)
-        if findings:
+        _display_findings_rich(result.findings, show_fix=config.show_fix, show_reproduction=config.show_reproduction)
+        if result.findings:
             _display_summary(result)
 
     _maybe_exit_on_findings(result)

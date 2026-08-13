@@ -52,7 +52,7 @@ No Docker, no database, no cloud service. Works with any OpenAI-compatible API.
 
 ```bash
 git clone https://github.com/Zoroo2626/Crysa.git
-cd crysa
+cd Crysa
 pip install -e ".[dev]"
 ```
 
@@ -109,8 +109,8 @@ crysa scan PATH [OPTIONS]
 
 | Flag | Short | Default | Description |
 |---|---|---|---|
-| `--severity` | `-s` | `LOW` | Minimum severity to report: `CRITICAL\|HIGH\|MEDIUM\|LOW\|INFO` |
-| `--format` | `-f` | `rich` | Output format: `rich\|json\|sarif` |
+| `--severity` | `-s` | `LOW` | Minimum severity to report: `CRITICAL|HIGH|MEDIUM|LOW|INFO` |
+| `--format` | `-f` | `rich` | Output format: `rich|json|sarif` |
 | `--fix` | | off | Show fix suggestions inline with each finding |
 | `--watch` | | off | Keep running and re-scan on every file change |
 | `--vuln-class` | `-v` | all | Comma-separated vulnerability classes to focus on |
@@ -221,7 +221,7 @@ git diff HEAD | crysa diff --format sarif
 | Flag | Short | Default | Description |
 |---|---|---|---|
 | `--staged` | | off | Scan staged (`git add`'d) changes |
-| `--format` | `-f` | `rich` | Output format: `rich\|json\|sarif` |
+| `--format` | `-f` | `rich` | Output format: `rich|json|sarif` |
 
 ---
 
@@ -245,7 +245,6 @@ crysa mcp --port 3333 --host 127.0.0.1
 
 Print the security context snapshot Crysa has built for a project.
 Useful for understanding what Crysa knows about your codebase before scanning.
-
 ```bash
 crysa context ./my-project
 crysa context .
@@ -601,8 +600,8 @@ CRYSA_QUIET=1     # Suppress non-finding output (equivalent to --quiet)
 Crysa is built for the security community.
 
 ```bash
-git clone https://github.com/crysa/crysa
-cd crysa
+git clone https://github.com/Zoroo2626/Crysa.git
+cd Crysa
 pip install -e ".[dev]"
 python -m pytest tests/
 ```
